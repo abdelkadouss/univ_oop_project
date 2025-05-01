@@ -1,5 +1,6 @@
-import java.util.List;
-import storege.Repository;
+
+// for testing
+import test.Test;
 
 /**
  * the main class that runs the application this one handles the command line
@@ -16,11 +17,8 @@ public class App {
       }
     }
 
-    Repository repo = new Repository("books.txt");
-    // repo.push(List.of("1", "2", "3"));
-    List<String> books = repo.pull();
-    System.out.println(books.get(0));
-    repo.push(List.of("this", "is", "a", "test"));
-    System.out.println(repo.pull());
+    // for testing
+    Test test = new Test();
+    test.main();
   }
 }

@@ -13,7 +13,7 @@ public class Storege {
 
     Book[] getAll();
 
-    void put(int bookId);
+    void put(Book book);
 
     void updateStatus(int bookId, boolean isAvailable);
 
