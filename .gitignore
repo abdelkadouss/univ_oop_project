@@ -8,4 +8,6 @@ build
 .DS_Store
 
 # Build
-maktaba
+/target
+/*.class
+/books.txt
