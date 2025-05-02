@@ -25,6 +25,6 @@ public class Cli {
   }
 
   public interface Command {
-    void run();
+    void run(String options);
   }
 }

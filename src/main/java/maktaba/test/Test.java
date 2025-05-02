@@ -14,5 +14,7 @@ public class Test {
     // bookRepo.main();
     BorrowersRepo__test__ borrowersRepo = new BorrowersRepo__test__();
     // borrowersRepo.main();
+    List__test__ list = new List__test__();
+    // list.main();
   }
 }
