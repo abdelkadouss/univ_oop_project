@@ -11,3 +11,5 @@ build
 /target
 /*.class
 /books.txt
+/repo.txt
+/borrowers.txt

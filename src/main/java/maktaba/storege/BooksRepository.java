@@ -8,9 +8,8 @@ import java.util.List;
  */
 public class BooksRepository
     extends Repository implements Storege.BooksRepository {
-  private static final Repository repo = new Repository("books.txt");
 
-  public BooksRepository(String filename) { super(filename); }
+  public BooksRepository() { super("books.txt"); }
 
   public Book get(int bookId) {
     List<String> lines = pull();
@@ -50,13 +49,13 @@ public class BooksRepository
                                 book.getType().toString(), book.getAuthor(),
                                 book.isState());
     List<String> lines = List.of(line);
-    repo.push(lines);
+    this.push(lines);
   }
 
   public void updateStatus(int bookId, boolean isAvailable) {
     Book book = this.get(bookId);
     book.setState(isAvailable);
-    repo.delete(bookId);
+    this.delete(bookId);
     put(book);
   }
 

@@ -1,6 +1,7 @@
 package storege;
 
 import core.Book;
+import core.Borrower;
 
 /**
  * storege the module that manages the json storage of the books and borrowers
@@ -22,11 +23,11 @@ public class Storege {
 
   // the borrowers json storage manager
   public interface BorrowersRepository {
-    Book get(int borrowerId);
+    Borrower get(int borrowerId);
 
-    Book[] getAll();
+    Borrower[] getAll();
 
-    void put(int borrowerId);
+    void put(Borrower borrower);
 
     void borrow(int bookId, int borrowerId);
 

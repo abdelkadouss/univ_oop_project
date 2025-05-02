@@ -5,6 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class Repository {
@@ -70,23 +71,38 @@ public class Repository {
 
   public void delete(int id) {
     List<String> lines = pull();
-    for (String line : lines) {
+    if (lines == null) {
+      return; // Nothing to delete if file doesn't exist
+    }
+
+    boolean modified = false;
+    Iterator<String> iterator = lines.iterator();
+
+    while (iterator.hasNext()) {
+      String line = iterator.next();
       if (line == null || line.trim().isEmpty()) {
-        continue; // Skip empty lines
+        continue;
       }
 
       try {
         String[] parts = line.split(" ");
-        String idAsString = parts[0];
-        int idAsInt = Integer.parseInt(idAsString);
+        int idAsInt = Integer.parseInt(parts[0]);
         if (idAsInt == id) {
-          // int id, String title, BookType type, String author, boolean state
-          lines.remove(line);
-          // i let it keep going to clean up the repated ids
+          iterator.remove();
+          modified = true;
         }
       } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
-        // Handle lines that don't contain valid IDs
         System.err.println("Skipping invalid line: " + line);
+      }
+    }
+
+    if (modified) {
+      try {
+        Files.write(filePath, lines, StandardOpenOption.CREATE,
+                    StandardOpenOption.TRUNCATE_EXISTING);
+      } catch (IOException e) {
+        System.err.println("Failed to update file after deletion: " +
+                           e.getMessage());
       }
     }
   }
