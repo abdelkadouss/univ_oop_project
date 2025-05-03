@@ -8,7 +8,7 @@ import storege.Repository;
  */
 public class Repo__test__ {
 
-  public void main() {
+  public static void main() {
     System.out.println("-- repo test --");
     Repository repo = new Repository("repo.txt");
     repo.push(List.of("1", "22", "3"));

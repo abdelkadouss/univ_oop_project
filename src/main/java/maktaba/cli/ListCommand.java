@@ -27,8 +27,12 @@ public class ListCommand extends Cli implements Command {
       BorrowerRepository repo = new BorrowerRepository();
       Borrower[] borrowers = repo.getAll();
       for (Borrower borrower : borrowers) {
+        String books = "";
+        for (int bookId : borrower.getBooks()) {
+          books += bookId + " ";
+        }
         System.out.println(borrower.getId() + " " + borrower.getName() + " " +
-                           borrower.getBooks());
+                           books);
       }
     }
   }

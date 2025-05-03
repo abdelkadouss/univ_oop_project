@@ -8,7 +8,7 @@ import storege.BooksRepository;
  */
 public class BookRepo__test__ {
 
-  public void main() {
+  public static void main() {
     System.out.println("-- book repo test --");
     BooksRepository repo = new BooksRepository();
     int idsLength = repo.getIds().size();

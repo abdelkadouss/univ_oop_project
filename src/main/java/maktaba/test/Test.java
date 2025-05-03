@@ -1,20 +1,16 @@
 package test;
 
 /**
- * Test
+ * Test the test module
  */
 public class Test {
 
-  @SuppressWarnings("unused")
   public static void main() {
     System.out.println("==== test ====");
-    Repo__test__ repo = new Repo__test__();
-    // repo.main();
-    BookRepo__test__ bookRepo = new BookRepo__test__();
-    // bookRepo.main();
-    BorrowersRepo__test__ borrowersRepo = new BorrowersRepo__test__();
-    // borrowersRepo.main();
-    List__test__ list = new List__test__();
-    // list.main();
+    Repo__test__.main();
+    BookRepo__test__.main();
+    BorrowersRepo__test__.main();
+    List__test__.main();
+    cmds__test__.main();
   }
 }

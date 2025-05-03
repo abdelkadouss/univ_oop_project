@@ -47,6 +47,7 @@ public class BorrowerRepository
   public Borrower[] getAll() {
     Borrower[] borrowers = new Borrower[this.getIds().size()];
     List<String> lines = this.pull();
+    int i = 0;
     for (String line : lines) {
       if (line == null || line.trim().isEmpty()) {
         continue; // Skip empty lines
@@ -58,15 +59,16 @@ public class BorrowerRepository
         // Parse books (assuming they're comma-separated after name)
         String[] bookIds = parts[2].split(",");
         int[] books = new int[bookIds.length];
-        for (int i = 0; i < bookIds.length; i++) {
-          books[i] = Integer.parseInt(bookIds[i]);
-
-          Borrower newBorrower = new Borrower(id,       // borrower ID
-                                              parts[1], // name
-                                              books     // array of book IDs
-          );
-          borrowers[i] = newBorrower;
+        for (int j = 0; j < bookIds.length; j++) {
+          books[j] = Integer.parseInt(bookIds[j]);
         }
+
+        Borrower newBorrower = new Borrower(id,       // borrower ID
+                                            parts[1], // name
+                                            books     // array of book IDs
+        );
+        borrowers[i] = newBorrower;
+        i++;
       } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
         System.err.println("Skipping invalid line: " + line);
       }
@@ -124,6 +126,10 @@ public class BorrowerRepository
           String bookIdAsString = String.valueOf(bookId);
           // make the new line to push
           String[] newBooksArr = parts[2].split(",");
+          if (newBooksArr.length == 1) {
+            this.delete(borrowerId);
+            return;
+          }
           String newBooks = Arrays.stream(newBooksArr)
                                 .filter(book -> !book.equals(bookIdAsString))
                                 .collect(Collectors.joining(","));

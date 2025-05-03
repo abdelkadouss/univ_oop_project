@@ -22,6 +22,7 @@ public class GetCommand extends Cli implements Command {
       BooksRepository bRepo = new BooksRepository();
       Book book = bRepo.get(Id);
       if (book != null) {
+        System.out.println("the book " + Id);
         System.out.println("id: " + book.getId());
         System.out.println("title: " + book.getTitle());
         System.out.println("type: " + book.getType());
@@ -34,12 +35,14 @@ public class GetCommand extends Cli implements Command {
       BorrowerRepository rRepo = new BorrowerRepository();
       Borrower borrower = rRepo.get(Id);
       if (borrower != null) {
+        System.out.println("the borrower " + Id);
         System.out.println("id: " + borrower.getId());
         System.out.println("name: " + borrower.getName());
-        System.out.println("books:");
+        String books = "";
         for (int bookId : borrower.getBooks()) {
-          System.out.println(bookId);
+          books += bookId + " ";
         }
+        System.out.println("books: " + books);
       }
       break;
     default:
