@@ -4,7 +4,6 @@
 # Pre requisites
 
 - Jdk 23
-- Just (optional)
 - any Unix-like OS (recommended for easly following the instructions incha'Allah) (for windows users it's recommended to use WSL)
 
 # Installation and Usage
